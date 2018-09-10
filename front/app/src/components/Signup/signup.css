@@ -1,0 +1,32 @@
+.signup-container{
+  width: 50%;
+  margin: auto;
+  margin-top: 150px;
+}
+
+.signup-form{
+  width: 50%;
+  margin: auto;
+}
+
+.signup-form input{
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.signup-form input[type=submit]{
+  background-color: #1B95E0;
+  border: none;
+  padding: 12px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+#succesMessage{
+  color: green;
+}
+
+#errorMessage{
+  color: red;
+}

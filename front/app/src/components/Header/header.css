@@ -1,0 +1,34 @@
+.header-container {
+  width: 100%;
+  position: relative;
+}
+
+.logo-container{
+  width: 20%;
+  text-align: center;
+  display: inline-block;
+}
+
+.logo-container img{
+  width: 50%;
+  border-radius: 50%;
+}
+
+.menu-container{
+  display: inline-block;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 70%;
+}
+
+.menu-container a{
+  margin: 8px;
+}
+
+.sign-container{
+  display: inline;
+}

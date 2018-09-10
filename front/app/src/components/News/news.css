@@ -1,0 +1,21 @@
+.news-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.singleNews-container{
+  display: inline-block;
+  text-align: left;
+  width: 30%;
+  margin: 5% 1%;
+}
+
+.singleNews-container img{
+  width: 100px;
+  border-radius: 50%;
+  float: left;
+  margin-right: 10px;
+}

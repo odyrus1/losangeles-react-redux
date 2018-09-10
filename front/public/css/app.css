@@ -1,0 +1,138 @@
+
+
+/*# sourceMappingURL=style.css.map */
+
+.header-container {
+  width: 100%;
+  position: relative;
+}
+
+.logo-container{
+  width: 20%;
+  text-align: center;
+  display: inline-block;
+}
+
+.logo-container img{
+  width: 50%;
+  border-radius: 50%;
+}
+
+.menu-container{
+  display: inline-block;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 70%;
+}
+
+.menu-container a{
+  margin: 8px;
+}
+
+.sign-container{
+  display: inline;
+}
+
+.table-container{
+  width: 50%;
+  margin: auto;
+}
+
+.table-container table{
+  margin: auto;
+}
+
+.news-container{
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.singleNews-container{
+  display: inline-block;
+  text-align: left;
+  width: 30%;
+  margin: 5% 1%;
+}
+
+.singleNews-container img{
+  width: 100px;
+  border-radius: 50%;
+  float: left;
+  margin-right: 10px;
+}
+
+.signin-container{
+  width: 50%;
+  margin: auto;
+  margin-top: 150px;
+}
+
+.signin-form{
+  width: 50%;
+  margin: auto;
+}
+
+.signin-form input{
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.signin-form input[type=submit]{
+  background-color: #1B95E0;
+  border: none;
+  padding: 12px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+.signup-container{
+  width: 50%;
+  margin: auto;
+  margin-top: 150px;
+}
+
+.signup-form{
+  width: 50%;
+  margin: auto;
+}
+
+.signup-form input{
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.signup-form input[type=submit]{
+  background-color: #1B95E0;
+  border: none;
+  padding: 12px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+#succesMessage{
+  color: green;
+}
+
+#errorMessage{
+  color: red;
+}
+
+
+/*# sourceMappingURL=app.css.map*/
