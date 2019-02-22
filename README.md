@@ -2,8 +2,6 @@
 
 Training project with React and Redux.
 
-db - phpmyadmin
-
 back - php
 
 front - react + redux
