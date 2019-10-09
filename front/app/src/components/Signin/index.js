@@ -22,7 +22,6 @@ class Signin extends React.Component {
       .then(function (response) {
         if(response){
           this.props.actions.login(response);
-          // console.log(response);
           localStorage.setItem('username', response.data.user.user_login);
           localStorage.setItem('email', response.data.user.user_email);
           this.props.history.push('/account');

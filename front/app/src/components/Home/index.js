@@ -10,7 +10,7 @@ import League from 'src/containers/league';
 class Home extends React.Component {
 
   // Lifecycle
-  componentWillMount() {
+  componentDidMount() {
     this.props.actions.loadHome();
   }
 

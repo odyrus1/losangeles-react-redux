@@ -7,7 +7,7 @@ import React from 'react';
 class Header extends React.Component {
 
   // Lifecycle
-  componentWillMount() {
+  componentDidMount() {
     this.props.actions.loadHeader();
     this.checkLogin();
   }
@@ -30,6 +30,16 @@ class Header extends React.Component {
 
   render() {
 
+    const menus = this.props.menus ?
+      this.props.menus.map((menu, index) => (<a href="/" key={index}>{menu.menu_name}</a>))
+    :
+      null
+
+    const userConnected = this.props.user == 'guest' ?
+      <div className="sign-container"><a href="/signup">Sign up</a><a href="/signin">Sing in</a></div>
+    :
+      <div className="sign-container"><a href="/account">Account</a><a href="" onClick={this.logout}>Log out</a> <span>Hello {this.props.username}!</span></div>
+
     return (
       <div>
 
@@ -41,18 +51,9 @@ class Header extends React.Component {
 
           <div className="menu-container">
 
-            {
-                 this.props.menus ? this.props.menus.map((menu, index) => (
-                   <a href="/" key={index}>{menu.menu_name}</a>
-                )) : null
-            }
+            {menus}
 
-            {
-              this.props.user == 'guest' ?
-                <div className="sign-container"><a href="/signup">Sign up</a><a href="/signin">Sing in</a></div>
-              :
-                <div className="sign-container"><a href="/account">Account</a><a href="" onClick={this.logout}>Log out</a> <span>Hello {this.props.username}!</span></div>
-            }
+            {userConnected}
 
           </div>
 

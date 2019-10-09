@@ -4,11 +4,29 @@ import React from 'react';
 // Local import
 
 // Code
-class League extends React.Component {
-  render() {
+function League(props){
+
+      const leagueStats =  props.league ?
+        props.league.map((team, index) => (
+          <tr key={index}>
+            <td>{team.team_name}</td>
+            <td>{team.team_v}</td>
+            <td>{team.team_d}</td>
+            <td>{team.team_i}</td>
+            <td>{team.team_pts}</td>
+          </tr>
+        ))
+      :
+        <tr>
+          <td>no data</td>
+          <td>no data</td>
+          <td>no data</td>
+          <td>no data</td>
+          <td>no data</td>
+        </tr>
+
       return (
         <div>
-
           <div className="table-container">
             <table>
               <thead>
@@ -21,24 +39,12 @@ class League extends React.Component {
                 </tr>
               </thead>
               <tbody>
-
-                { this.props.league ? this.props.league.map((team, index) => (
-                  <tr key={index}>
-                    <td>{team.team_name}</td>
-                    <td>{team.team_v}</td>
-                    <td>{team.team_d}</td>
-                    <td>{team.team_i}</td>
-                    <td>{team.team_pts}</td>
-                  </tr>
-                )) : null }
-
+                {leagueStats}
               </tbody>
             </table>
           </div>
-
         </div>
       )
-  }
 }
 
 // Export

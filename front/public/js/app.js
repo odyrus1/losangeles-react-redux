@@ -37377,8 +37377,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -37389,68 +37387,48 @@ var _header2 = _interopRequireDefault(_header);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Import
-
-
-// Local import
-
-
 // Code
-var Account = function (_React$Component) {
-  _inherits(Account, _React$Component);
+// Import
+function Account(props) {
 
-  function Account() {
-    _classCallCheck(this, Account);
+  var userConnected = props.user !== 'guest' ? _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'p',
+      null,
+      'Username: ',
+      props.username
+    ),
+    _react2.default.createElement(
+      'p',
+      null,
+      'Email: ',
+      props.email
+    )
+  ) : _react2.default.createElement(
+    'p',
+    null,
+    'You dont have an account on your website yet! If you want to sign up, you can do it by clicking ',
+    _react2.default.createElement(
+      'a',
+      { href: '' },
+      'here'
+    )
+  );
 
-    return _possibleConstructorReturn(this, (Account.__proto__ || Object.getPrototypeOf(Account)).apply(this, arguments));
-  }
-
-  _createClass(Account, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_header2.default, null),
-        this.props.user != 'guest' ? _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'p',
-            null,
-            'Username: ',
-            this.props.username
-          ),
-          _react2.default.createElement(
-            'p',
-            null,
-            'Email: ',
-            this.props.email
-          )
-        ) : _react2.default.createElement(
-          'p',
-          null,
-          'You dont have an account on your website yet! If you want to sign up, you can do it by clicking ',
-          _react2.default.createElement(
-            'a',
-            { href: '' },
-            'here'
-          )
-        )
-      );
-    }
-  }]);
-
-  return Account;
-}(_react2.default.Component);
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(_header2.default, null),
+    userConnected
+  );
+}
 
 // Export
 
 
+// Local import
 exports.default = Account;
 
 });
@@ -37562,17 +37540,61 @@ var Header = function (_React$Component) {
   }
 
   _createClass(Header, [{
-    key: 'componentWillMount',
+    key: 'componentDidMount',
 
 
     // Lifecycle
-    value: function componentWillMount() {
+    value: function componentDidMount() {
       this.props.actions.loadHeader();
       this.checkLogin();
     }
   }, {
     key: 'render',
     value: function render() {
+
+      var menus = this.props.menus ? this.props.menus.map(function (menu, index) {
+        return _react2.default.createElement(
+          'a',
+          { href: '/', key: index },
+          menu.menu_name
+        );
+      }) : null;
+
+      var userConnected = this.props.user == 'guest' ? _react2.default.createElement(
+        'div',
+        { className: 'sign-container' },
+        _react2.default.createElement(
+          'a',
+          { href: '/signup' },
+          'Sign up'
+        ),
+        _react2.default.createElement(
+          'a',
+          { href: '/signin' },
+          'Sing in'
+        )
+      ) : _react2.default.createElement(
+        'div',
+        { className: 'sign-container' },
+        _react2.default.createElement(
+          'a',
+          { href: '/account' },
+          'Account'
+        ),
+        _react2.default.createElement(
+          'a',
+          { href: '', onClick: this.logout },
+          'Log out'
+        ),
+        ' ',
+        _react2.default.createElement(
+          'span',
+          null,
+          'Hello ',
+          this.props.username,
+          '!'
+        )
+      );
 
       return _react2.default.createElement(
         'div',
@@ -37588,48 +37610,8 @@ var Header = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'menu-container' },
-            this.props.menus ? this.props.menus.map(function (menu, index) {
-              return _react2.default.createElement(
-                'a',
-                { href: '/', key: index },
-                menu.menu_name
-              );
-            }) : null,
-            this.props.user == 'guest' ? _react2.default.createElement(
-              'div',
-              { className: 'sign-container' },
-              _react2.default.createElement(
-                'a',
-                { href: '/signup' },
-                'Sign up'
-              ),
-              _react2.default.createElement(
-                'a',
-                { href: '/signin' },
-                'Sing in'
-              )
-            ) : _react2.default.createElement(
-              'div',
-              { className: 'sign-container' },
-              _react2.default.createElement(
-                'a',
-                { href: '/account' },
-                'Account'
-              ),
-              _react2.default.createElement(
-                'a',
-                { href: '', onClick: this.logout },
-                'Log out'
-              ),
-              ' ',
-              _react2.default.createElement(
-                'span',
-                null,
-                'Hello ',
-                this.props.username,
-                '!'
-              )
-            )
+            menus,
+            userConnected
           )
         )
       );
@@ -37694,11 +37676,11 @@ var Home = function (_React$Component) {
   }
 
   _createClass(Home, [{
-    key: 'componentWillMount',
+    key: 'componentDidMount',
 
 
     // Lifecycle
-    value: function componentWillMount() {
+    value: function componentDidMount() {
       this.props.actions.loadHome();
     }
   }, {
@@ -37731,125 +37713,131 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Import
-
-
 // Local import
 
 // Code
-var League = function (_React$Component) {
-  _inherits(League, _React$Component);
+function League(props) {
 
-  function League() {
-    _classCallCheck(this, League);
+  var leagueStats = props.league ? props.league.map(function (team, index) {
+    return _react2.default.createElement(
+      "tr",
+      { key: index },
+      _react2.default.createElement(
+        "td",
+        null,
+        team.team_name
+      ),
+      _react2.default.createElement(
+        "td",
+        null,
+        team.team_v
+      ),
+      _react2.default.createElement(
+        "td",
+        null,
+        team.team_d
+      ),
+      _react2.default.createElement(
+        "td",
+        null,
+        team.team_i
+      ),
+      _react2.default.createElement(
+        "td",
+        null,
+        team.team_pts
+      )
+    );
+  }) : _react2.default.createElement(
+    "tr",
+    null,
+    _react2.default.createElement(
+      "td",
+      null,
+      "no data"
+    ),
+    _react2.default.createElement(
+      "td",
+      null,
+      "no data"
+    ),
+    _react2.default.createElement(
+      "td",
+      null,
+      "no data"
+    ),
+    _react2.default.createElement(
+      "td",
+      null,
+      "no data"
+    ),
+    _react2.default.createElement(
+      "td",
+      null,
+      "no data"
+    )
+  );
 
-    return _possibleConstructorReturn(this, (League.__proto__ || Object.getPrototypeOf(League)).apply(this, arguments));
-  }
-
-  _createClass(League, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "div",
+  return _react2.default.createElement(
+    "div",
+    null,
+    _react2.default.createElement(
+      "div",
+      { className: "table-container" },
+      _react2.default.createElement(
+        "table",
         null,
         _react2.default.createElement(
-          "div",
-          { className: "table-container" },
+          "thead",
+          null,
           _react2.default.createElement(
-            "table",
+            "tr",
             null,
             _react2.default.createElement(
-              "thead",
+              "th",
               null,
-              _react2.default.createElement(
-                "tr",
-                null,
-                _react2.default.createElement(
-                  "th",
-                  null,
-                  "Team Name"
-                ),
-                _react2.default.createElement(
-                  "th",
-                  null,
-                  "Victories"
-                ),
-                _react2.default.createElement(
-                  "th",
-                  null,
-                  "Lost"
-                ),
-                _react2.default.createElement(
-                  "th",
-                  null,
-                  "Draws"
-                ),
-                _react2.default.createElement(
-                  "th",
-                  null,
-                  "Points"
-                )
-              )
+              "Team Name"
             ),
             _react2.default.createElement(
-              "tbody",
+              "th",
               null,
-              this.props.league ? this.props.league.map(function (team, index) {
-                return _react2.default.createElement(
-                  "tr",
-                  { key: index },
-                  _react2.default.createElement(
-                    "td",
-                    null,
-                    team.team_name
-                  ),
-                  _react2.default.createElement(
-                    "td",
-                    null,
-                    team.team_v
-                  ),
-                  _react2.default.createElement(
-                    "td",
-                    null,
-                    team.team_d
-                  ),
-                  _react2.default.createElement(
-                    "td",
-                    null,
-                    team.team_i
-                  ),
-                  _react2.default.createElement(
-                    "td",
-                    null,
-                    team.team_pts
-                  )
-                );
-              }) : null
+              "Victories"
+            ),
+            _react2.default.createElement(
+              "th",
+              null,
+              "Lost"
+            ),
+            _react2.default.createElement(
+              "th",
+              null,
+              "Draws"
+            ),
+            _react2.default.createElement(
+              "th",
+              null,
+              "Points"
             )
           )
+        ),
+        _react2.default.createElement(
+          "tbody",
+          null,
+          leagueStats
         )
-      );
-    }
-  }]);
-
-  return League;
-}(_react2.default.Component);
+      )
+    )
+  );
+}
 
 // Export
-
-
+// Import
 exports.default = League;
 
 });
@@ -37861,70 +37849,48 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Import
-
-
 // Local import
 
 // Code
-var News = function (_React$Component) {
-  _inherits(News, _React$Component);
+function News(props) {
 
-  function News() {
-    _classCallCheck(this, News);
-
-    return _possibleConstructorReturn(this, (News.__proto__ || Object.getPrototypeOf(News)).apply(this, arguments));
-  }
-
-  _createClass(News, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "div",
+  var news = props.news ? props.news.map(function (news, index) {
+    return _react2.default.createElement(
+      "div",
+      { className: "singleNews-container", key: index },
+      _react2.default.createElement("img", { src: news.news_image, alt: "news-image" }),
+      _react2.default.createElement(
+        "h1",
         null,
-        _react2.default.createElement(
-          "div",
-          { className: "news-container" },
-          this.props.news ? this.props.news.map(function (news, index) {
-            return _react2.default.createElement(
-              "div",
-              { className: "singleNews-container", key: index },
-              _react2.default.createElement("img", { src: news.news_image, alt: "news-image" }),
-              _react2.default.createElement(
-                "h1",
-                null,
-                news.news_title
-              ),
-              _react2.default.createElement(
-                "p",
-                null,
-                news.news_content
-              )
-            );
-          }) : null
-        )
-      );
-    }
-  }]);
+        news.news_title
+      ),
+      _react2.default.createElement(
+        "p",
+        null,
+        news.news_content
+      )
+    );
+  }) : null;
 
-  return News;
-}(_react2.default.Component);
+  return _react2.default.createElement(
+    "div",
+    null,
+    _react2.default.createElement(
+      "div",
+      { className: "news-container" },
+      news
+    )
+  );
+}
 
 // Export
-
-
+// Import
 exports.default = News;
 
 });
@@ -37991,7 +37957,6 @@ var Signin = function (_React$Component) {
       }).then(function (response) {
         if (response) {
           this.props.actions.login(response);
-          // console.log(response);
           localStorage.setItem('username', response.data.user.user_login);
           localStorage.setItem('email', response.data.user.user_email);
           this.props.history.push('/account');
